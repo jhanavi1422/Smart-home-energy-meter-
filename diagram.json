@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "author": "jahour mehdi",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -211.2, "left": -71.96, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -57.4, "left": 163.2, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -214.4,
+      "left": 188,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -99.6,
+      "left": 531.8,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 0, "left": 460.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 10.36, "left": 489.6, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -133.64, "left": 86.4, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 0, "left": 105, "attrs": {} },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": -143.77, "left": -201.53, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:13", "relay1:IN", "green", [ "h-33.41", "v76.8", "h182.4", "v-124.8" ] ],
+    [ "relay1:GND", "lcd1:GND", "black", [ "h-28.8", "v-0.4" ] ],
+    [ "lcd1:VCC", "relay1:VCC", "red", [ "h-28.8", "v134.5" ] ],
+    [ "esp:GND.3", "relay1:GND", "black", [ "h43.24", "v19.2" ] ],
+    [ "esp:5V", "relay1:VCC", "red", [ "h-14.21", "v19.2", "h144", "v-124.8", "h-9.6" ] ],
+    [ "lcd1:SDA", "esp:21", "orange", [ "h-38.4", "v105.8", "h-19.2" ] ],
+    [ "relay1:NO", "gnd1:GND", "black", [ "h0" ] ],
+    [ "led1:A", "vcc1:VCC", "red", [ "v19.2", "h28.8" ] ],
+    [ "lcd1:VCC", "vcc2:VCC", "red", [ "h-57.6", "v0.1" ] ],
+    [ "lcd1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "lcd1:SCL", "esp:22", "gold", [ "h-9.6", "v0.3" ] ],
+    [ "esp:5", "sd1:CS", "green", [ "h0" ] ],
+    [ "esp:18", "sd1:SCK", "green", [ "h0" ] ],
+    [ "esp:3V3", "sd1:VCC", "green", [ "h-57.45", "v57.6" ] ],
+    [ "esp:GND.1", "sd1:GND", "black", [ "h0" ] ],
+    [ "sd1:DI", "esp:23", "green", [ "h0" ] ],
+    [ "esp:19", "sd1:DO", "green", [ "h0" ] ],
+    [ "relay1:COM", "led1:C", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
